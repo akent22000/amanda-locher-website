@@ -1,1 +1,0 @@
-# Amanda Locher Website
