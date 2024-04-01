@@ -1,102 +1,95 @@
+const tag = document.getElementById("tag");
+let chosenTag = `humorous`;
 
-const apiUrl = 'https://api.quotable.io/random?tags='
+tag.addEventListener("change", () => {
+	chosenTag = tag.name;
+});
 
+async function generateTagOptions() {
+	let outPut = ``;
 
-const motivationalUrl = 'motivational';
-let happyUrl = 'happiness'
-const lovedUrl = 'friendship';
-const sillyUrl = 'humorous';
+	try {
+		const response = await fetch(`https://api.quotable.io/tags?sortBy=name&order=-1`);
 
-let endPoint = '';
-let choiceUrl = `${apiUrl}${endPoint}`;
-// let endPoint = `${motivationalUrl}`;
-console.log(choiceUrl)
+		if (!response.ok) {
+			throw new Error("Request failed.");
+		}
 
-// Welcome! How are you feeling today?
-// show quote options via buttons (silly happy motivational inspirational)
-async function quoteOptions() {
-
-  let quoteTypes = document.createElement('div');
-
-  //create and display button options
-  quoteTypes.innerHTML =
-    `<div class='container2'>
-    <p>Welcome! How are you feeling today?</p>
-        <button id="happyBtn">Happy</button>
-        <button id="motivationalBtn">Motivational</button>
-        <button id="lovedBtn">Loved</button>
-        <button id="humorousBtn">Silly</button>
-      </div>`
-
-  let content = document.querySelector('.container');
-  content.appendChild(quoteTypes)
-
-}
-quoteOptions();
-
-// each buttons needs to do something different when clicked
-async function fetchQuoteOption() {
-
-  try {
-
-    const response = await fetch(`${choiceUrl}`);
-    const data = await response.json();
+		const data = await response.json();
     console.log(data);
 
-    console.log(`Why is ${endPoint} not updating?`);
+		tag.removeAttribute("disabled");
 
-  } catch (error) {
-    console.error('Error:', error);
+		data.forEach((tag) => {
+			outPut += `<option value="${tag.name}">${tag.name}</option>`;
+		});
+
+		tag.innerHTML = outPut;
+		tag[3].selected = true;
+	} catch {
+		console.error(error);
+	}
+}
+generateTagOptions();
+
+
+
+// Powered by Quotable
+// https://github.com/lukePeavey/quotable
+
+document.addEventListener("DOMContentLoaded", () => {
+  // DOM elements
+  const button = document.querySelector("button");
+  const quote = document.querySelector("blockquote p");
+  const cite = document.querySelector("blockquote cite");
+
+  async function updateQuote() {
+    // Fetch a random quote from the Quotable API
+
+    const response = await fetch("https://api.quotable.io/random?tags=technology");
+    // const response = await fetch(`https://api.quotable.io/quotes/random?tags=${chosenTag}`);
+    //    "slug": "humorous", "success", "slug": "motivational", inspirational, 
+
+
+    const data = await response.json();
+
+    data.forEach(function(student) {
+  console.log(student.name);
+}); 
+    console.log(data);
+    if (response.ok) {
+      // Update DOM elements
+      quote.textContent = data.content;
+      cite.textContent = '-' + ' ' + data.author;
+      console.log("Is this working?");
+      console.log(data);
+    } else {
+      quote.textContent = "An error occured";
+    }
   }
 
-}
+  // Attach an event listener to the `button`
+  button.addEventListener("click", updateQuote);
 
-
-// happy button click, trying to change endpoint literal here
-document.getElementById("happyBtn").addEventListener("click", myFunction);
-
-function myFunction() {
-  let endPoint = 'happiness';
-
-  fetchQuoteOption();
-
-  // document.getElementById("happyBtn").innerHTML = "YOU CLICKED ME!";
-  console.log(`endPoint = ${endPoint} Why does endPoint save as happiness here but not update the const in the fetch link literal?`)
-
-}
+  // call updateQuote once when page loads
+  updateQuote();
+});
 
 
 
+// Get the button element
+const button = document.querySelector('button');
 
-// // // Returns motivational quote not happiness quote
-// document.getElementById("happyBtn").addEventListener("click", fetchQuoteOption)
+// Add a mouseover event listener
+button.addEventListener('mouseover', () => {
+  // Change the button's background color
+  button.style.backgroundColor = 'blue';
+});
 
-//
-
-//
-
-// const happy = document.getElementById("happyBtn");
-// const motivational = document.getElementById("motivationalBtn");
-// const loved = document.getElementById("lovedBtn");
-// const silly = document.getElementById("humorousBtn");
-
-// happy.addEventListener('click', function () {
-//   let endPoint = 'happiness';
-//   fetchQuoteOption();
-
-//   console.log(endPoint)
-//   console.log('button working, but not going to correct url')
-// });
-
-
-
-
-
-
-// join url with button option 
-
-const box = document.getElementById("box");
-
-
+// Add a mouseout event listener
+button.addEventListener('mouseout', () => {
+  // Change the button's background color back to its original color
+  button.style.backgroundColor = '';
+});
 
 
