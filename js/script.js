@@ -46,22 +46,19 @@ document.addEventListener("DOMContentLoaded", () => {
   async function updateQuote() {
     // Fetch a random quote from the Quotable API
 
-    const response = await fetch("https://api.quotable.io/random?tags=technology");
-    // const response = await fetch(`https://api.quotable.io/quotes/random?tags=${chosenTag}`);
+    // const response = await fetch("https://api.quotable.io/random?tags=technology");
+    const response = await fetch(`https://api.quotable.io/quotes/random?tags=${chosenTag}`);
     //    "slug": "humorous", "success", "slug": "motivational", inspirational, 
 
 
     const data = await response.json();
-
-    data.forEach(function(student) {
-  console.log(student.name);
-}); 
     console.log(data);
     if (response.ok) {
       // Update DOM elements
-      quote.textContent = data.content;
-      cite.textContent = '-' + ' ' + data.author;
+      quote.textContent = data[0].content;
+      cite.textContent = '-' + ' ' + data[0].author;
       console.log("Is this working?");
+      console.log(data[0].author);
       console.log(data);
     } else {
       quote.textContent = "An error occured";
@@ -91,5 +88,16 @@ button.addEventListener('mouseout', () => {
   // Change the button's background color back to its original color
   button.style.backgroundColor = '';
 });
+
+
+
+
+
+
+
+// let btn = document.getElementById("myBtn");
+// btn.addEventListener("click", renderData);
+
+
 
 
