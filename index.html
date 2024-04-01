@@ -7,36 +7,54 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Quotes</title>
   <link rel="stylesheet" href="css/style.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700" rel="stylesheet">
 </head>
 
-  <body>
-    <div id="ambient" class="container">
-      <div id="container" class="container">
+<body>
 
-      <label for="tag">Select your category</label>
-      <select name="tag" id="tag" disabled>
-      </select>
+  <div id="container" class="container">
+    <div class='main'>
+      <button id="happyBtn" class="button-52">Happy</button>
+      <button id="motivationalBtn" class="button-52">Motivational</button>
+      <button id="friendlyBtn" class="button-52">Friendly</button>
+      <button id="humorousBtn" class="button-52">Silly</button>
+      <button id="techyBtn" class="button-52">Techy</button>
+    </div>
 
 
-      <div class="card">
-        <div class="card-body">
-          <blockquote class="blockquote mb-0">
-            <p>loading...</p>
-            <footer class="blockquote-footer">
-              <cite title="Source Title"></cite>
-            </footer>
-          </blockquote>
-        </div>
-        <div class="card-footer">
-          <!-- <button class="btn btn-primary">New Quote -->
-        </div>
-      </div>
-      </div>
-      <button id="myBtn" class="btn btn-primary">New Quote</button>
 
-      </div>
-      
-      <script src="js/script.js"></script>
+    <div class="card" id="card">
+    </div>
+  </div>
+
+  <div class='wellness'>
+    <p>This page displays a quote to help keep us mentally healthy and to reduce stress. <br>Interested in additional
+      mental
+      wellness?</p>
+    <a class="button-2" href="https://www.who.int/news-room/feature-stories/mental-well-being-resources-for-the-public"
+      target="_blank">
+      Check out more resourses!
+    </a>
+
+  </div>
+
+  <div class="footer">
+    <img src="assets/gitHubIcon.png" alt="GitHub Icon" class="footerIcons">
+    <img src="assets/jsIcon.png" alt="JavaScript Icon" class="footerIcons">
+    <img src="assets/html5Icon.png" alt="HTML5 Icon" class="footerIcons">
+    <img src="assets/css3Icon.png" alt="CSS3" class="footerIcons">
+    <p>
+      <a href="https://github.com/akent22000" target="_blank">Built with ♥</a>
+    </p>
+  </div>
+
+  <div class="cursor"></div>
+
+  <script src="js/script.js"></script>
 
 </body>
+
 </html>
